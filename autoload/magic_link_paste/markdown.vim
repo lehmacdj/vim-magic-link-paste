@@ -23,7 +23,7 @@ function! magic_link_paste#markdown#paste() abort
     " opening bracket could move the end of the text relative to `>
     call feedkeys("\<Esc>`>a]\<Esc>`<i[\<Esc>%a()\<Esc>\"" . l:reg . 'PF]%', 'n')
   else
-    call feedkeys("p", 'n')
+    execute "normal! p"
   endif
 
   " Setup repeat for repeat.vim
