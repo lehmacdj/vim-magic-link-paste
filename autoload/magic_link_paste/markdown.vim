@@ -1,4 +1,4 @@
-xnoremap <Plug>(magic_link_paste-markdown) <Esc>:<C-U>call magic_link_paste#markdown#paste()<CR>
+xnoremap <Plug>(magic_link_paste-markdown) <Cmd>call magic_link_paste#markdown#paste()<CR>
 
 " Emulates the behavior of apps like slack where pasting a link over a
 " selection turns the selection into a link.
@@ -21,9 +21,9 @@ function! magic_link_paste#markdown#paste() abort
   if (l:pasting_link || l:pasting_bracketed_link) && !l:cursor_in_link
     " need to insert second bracket first, because otherwise inserting the
     " opening bracket could move the end of the text relative to `>
-    execute "normal! `>a]\<Esc>`<i[\<Esc>%a()\<Esc>\"" . l:reg . 'PF]%'
+    call feedkeys("<Esc>`>a]\<Esc>`<i[\<Esc>%a()\<Esc>\"" . l:reg . 'PF]%', 'n')
   else
-    execute "normal! p"
+    call feedkeys("p", 'n')
   endif
 
   " Setup repeat for repeat.vim
