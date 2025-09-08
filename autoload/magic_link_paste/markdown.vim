@@ -11,7 +11,7 @@ function! magic_link_paste#markdown#visual_expr_mapping() abort
   let l:pasting_link = l:to_paste =~# '^https\?:.*'
   let l:pasting_bracketed_link = l:to_paste =~# '^<https\?:.*>'
   let l:cursor_in_link = has('nvim')
-        \ && v:lua.require'treesitter_detect_markdown_url'.is_cursor_in_markdown_link_url()
+        \ && v:lua.require'magic_link_paste'.is_cursor_in_markdown_link_url()
 
   if (l:pasting_link || l:pasting_bracketed_link) && !l:cursor_in_link
     return "S]%a()\<Esc>\"" . l:reg . 'PF]%'
