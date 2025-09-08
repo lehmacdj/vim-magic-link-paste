@@ -1,40 +1,56 @@
-*magic_link_paste.txt*  Easily create formatted links when pasting URLs
+*magic_link_paste.txt*  Easily create links when pasting URLs
 
 Author:  Devin Lehmacher <unformeddelta.wiki>
 License: GPLv3
 
 This plugin is only available if 'compatible' is not set.
 
-INTRODUCTION                                    *magic_link_paste*
+INTRODUCTION                                    *magic-link-paste*
 
 This plugin provides a mapping for *p* that intelligently pastes URLs either
 as plain text or by creating a formatted markdown link.
 
-CONFIGURATION                                   *magic_link_paste-configuration*
+QUICK START                                     *magic-link-paste-quick-start*
+Copy a link, e.g. `https://github.com/lehmacdj/vim-magic-link-paste` and then open any markdown file. Visually select some text:
+>
+- vim-magic-link-paste: a plugin that lets you easily create formatted links
+  ^^^^^^^^^^^^^^^^^^^^
+  Select this!
+<
+
+Then press *p* to paste the URL as a markdown link, resulting in the following
+buffer:
+>
+- [vim-magic-link-paste](https://github.com/lehmacdj/vim-magic-link-paste): easily create links when pasting URLs
+<
+
+To disable the mapping by default see |g:magic-link-paste_filetypes|.
+
+CONFIGURATION                                   *magic-link-paste-configuration*
 
 The plugin automatically installs the mapping for *p* in visual/select mode.
-See |g:magic_link_paste_filetypes| to disable the mapping for certain
+See |g:magic-link-paste_filetypes| to disable the mapping for certain
 filetypes.
 
-                                                *magic_link_paste-p*
+                                                *magic-link-paste-p*
 ["x]p                   Replaces the visual selection the text [from register x].
                         If the clipboard contains a URL, creates a link such
                         that the replaced text is the link text, linked to the
                         URL, e.g. in markdown: `[replaced text](pasted URL)`.
-                        This calls |magic_link_paste#markdown#paste()|.
+                        This calls |magic-link-paste#markdown#paste()|.
 
-                                                *g:magic_link_paste_filetypes*
+                                                *g:magic-link-paste_filetypes*
 The filetypes for which this plugin installs keymaps can be configured by
 specifying a list of filetypes. The following is the default configuration:
 >
-        let g:magic_link_paste_filetypes = ['markdown']
+        let g:magic-link-paste_filetypes = ['markdown']
 <
 You can disable all mappings by passing an empty list.
 >
-        let g:magic_link_paste_filetypes = []
+        let g:magic-link-paste_filetypes = []
 <
 
-magic_link_paste#markdown#paste()               *magic_link_paste#markdown#paste()*
+magic-link-paste#markdown#paste()               *magic-link-paste#markdown#paste()*
 		The function called by the *p* mapping. It checks whether the
                 clipboard is a URL, whether the selected text is not a URL,
                 and if so synthesizes a markdown link.
@@ -53,7 +69,7 @@ magic_link_paste#markdown#paste()               *magic_link_paste#markdown#paste
                 syntax suppresses escape sequences, and is also valid in a
                 link like `[Example](<https://example.com>)`.
 
-ABOUT                                           *magic_link_paste-about*
+ABOUT                                           *magic-link-paste-about*
 
 Grab the latest version or report a bug on GitHub:
 
