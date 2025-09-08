@@ -13,7 +13,7 @@ as plain text or by creating a formatted markdown link.
 QUICK START                                     *magic-link-paste-quick-start*
 Copy a link, e.g. `https://github.com/lehmacdj/vim-magic-link-paste` and then open any markdown file. Visually select some text:
 >
-- vim-magic-link-paste: a plugin that lets you easily create formatted links
+- vim-magic-link-paste: easily create links when pasting URLs
   ^^^^^^^^^^^^^^^^^^^^
   Select this!
 <

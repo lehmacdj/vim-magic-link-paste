@@ -18,7 +18,7 @@ Copy a link, e.g. `https://unformeddelta.wiki` and then open any markdown file. 
   Select this!
 ```
 
-Then paste, resulting in the following buffer:
+Then press `p` to paste, resulting in the following buffer:
 ```markdown
 - [vim-magic-link-paste](https://github.com/lehmacdj/vim-magic-link-paste): easily create links when pasting URLs
 ```
