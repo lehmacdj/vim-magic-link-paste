@@ -8,7 +8,7 @@ augroup magic_link_paste
     autocmd!
     if index(s:filetypes, 'markdown') >= 0
       autocmd FileType markdown
-        \ xmap <buffer> <expr> p markdown_magic_link_paste#visual_expr_mapping()
+        \ xnoremap <buffer> <expr> p magic_link_paste#markdown#paste()
     endif
 augroup END
 

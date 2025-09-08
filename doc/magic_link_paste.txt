@@ -1,0 +1,62 @@
+*magic_link_paste.txt*  Easily create formatted links when pasting URLs
+
+Author:  Devin Lehmacher <unformeddelta.wiki>
+License: GPLv3
+
+This plugin is only available if 'compatible' is not set.
+
+INTRODUCTION                                    *magic_link_paste*
+
+This plugin provides a mapping for *p* that intelligently pastes URLs either
+as plain text or by creating a formatted markdown link.
+
+CONFIGURATION                                   *magic_link_paste-configuration*
+
+The plugin automatically installs the mapping for *p* in visual/select mode.
+See |g:magic_link_paste_filetypes| to disable the mapping for certain
+filetypes.
+
+                                                *magic_link_paste-p*
+["x]p                   Replaces the visual selection the text [from register x].
+                        If the clipboard contains a URL, creates a link such
+                        that the replaced text is the link text, linked to the
+                        URL, e.g. in markdown: `[replaced text](pasted URL)`.
+                        This calls |magic_link_paste#markdown#paste()|.
+
+                                                *g:magic_link_paste_filetypes*
+The filetypes for which this plugin installs keymaps can be configured by
+specifying a list of filetypes. The following is the default configuration:
+>
+        let g:magic_link_paste_filetypes = ['markdown']
+<
+You can disable all mappings by passing an empty list.
+>
+        let g:magic_link_paste_filetypes = []
+<
+
+magic_link_paste#markdown#paste()               *magic_link_paste#markdown#paste()*
+		The function called by the *p* mapping. It checks whether the
+                clipboard is a URL, whether the selected text is not a URL,
+                and if so synthesizes a markdown link.
+
+                For example if the clipboard contains `https://example.com`
+                and the visual selection is `Example`, the result will be
+                `[Example](https://example.com)`.
+
+                If the visual selection is a URL (e.g. `https: //wikipedia.org`)
+                and the clipboard is also a URL (e.g. `https://example.com`),
+                pasting will simply replace the URL instead of creating a
+                link.
+
+                Note that for markdown we also consider the clipboard to
+                contain a URL autolink like `<https://example.com>`. This
+                syntax suppresses escape sequences, and is also valid in a
+                link like `[Example](<https://example.com>)`.
+
+ABOUT                                           *magic_link_paste-about*
+
+Grab the latest version or report a bug on GitHub:
+
+https://github.com/lehmacdj/vim-magic-link-paste
+
+ vim:tw=78:et:ft=help:norl:
