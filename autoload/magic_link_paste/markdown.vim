@@ -1,4 +1,4 @@
-xnoremap <Plug>(magic_link_paste-markdown) :<C-u>call magic_link_paste#markdown#paste()<CR>
+xnoremap <Plug>(magic_link_paste-markdown) <Cmd>call magic_link_paste#markdown#paste()<CR>
 
 " Emulates the behavior of apps like slack where pasting a link over a
 " selection turns the selection into a link.
@@ -27,5 +27,5 @@ function! magic_link_paste#markdown#paste() abort
   endif
 
   " Setup repeat for repeat.vim
-  silent! call repeat#set("gv\<Plug>(magic_link_paste-markdown)")
+  silent! call repeat#set("\<Plug>(magic_link_paste-markdown)")
 endfunction
