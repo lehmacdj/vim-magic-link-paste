@@ -14,7 +14,9 @@ function! magic_link_paste#markdown#paste() abort
         \ && v:lua.require'magic_link_paste'.is_cursor_in_markdown_link_url()
 
   if (l:pasting_link || l:pasting_bracketed_link) && !l:cursor_in_link
-    return "\<Esc>`<i[\<Esc>`>a]()\<Esc>\"" . l:reg . 'PF]%'
+    " need to insert second bracket first, because otherwise inserting the
+    " opening bracket could move the end of the text relative to `>
+    return "\<Esc>`>a]\<Esc>`<i[\<Esc>%a()\<Esc>\"" . l:reg . 'PF]%'
   else
     return 'p'
   endif
