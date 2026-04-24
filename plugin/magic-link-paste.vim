@@ -12,4 +12,8 @@ augroup magic_link_paste
     endif
 augroup END
 
+if has('nvim') && get(g:, 'magic_link_paste_intercept_bracketed_paste', 1)
+  call v:lua.require'magic_link_paste'.setup_paste_override(s:filetypes)
+endif
+
 let g:loaded_magic_link_paste = 1

@@ -49,8 +49,21 @@ You can disable all mappings by passing an empty list.
 >
         let g:magic-link-paste_filetypes = []
 <
+                                                *g:magic_link_paste_wrap_bare_urls*
+Controls whether pasting pasting plain text over a URL wraps it into `[paste]
+(URL)`. Enabled by default. Set to 0 to disable.
+>
+        let g:magic_link_paste_wrap_bare_urls = 0
+<
+                                                *g:magic_link_paste_intercept_bracketed_paste*
+Controls whether the plugin should override `vim.paste()` so that pasting with
+OS shortcuts (e.g. Cmd-V in kitty/iTerm 2 on macOS) triggers the same magic-link logic
+as `p`. Enabled by default. Set to 0 to avoid overriding |vim.paste()|:
+>
+        let g:magic_link_paste_intercept_bracketed_paste = 0
+<
 
-magic-link-paste#markdown#paste()               *magic-link-paste#markdown#paste()*
+magic_link_paste#markdown#paste()               *magic_link_paste#markdown#paste()*
 		The function called by the *p* mapping. It checks whether the
                 clipboard is a URL, whether the selected text is not a URL,
                 and if so synthesizes a markdown link.
@@ -58,6 +71,10 @@ magic-link-paste#markdown#paste()               *magic-link-paste#markdown#paste
                 For example if the clipboard contains `https://example.com`
                 and the visual selection is `Example`, the result will be
                 `[Example](https://example.com)`.
+
+                If the visual selection is a URL and the clipboard contains
+                plain text, the URL is wrapped into `[<clipboard>](<selection>)`.
+                Use |g:magic_link_paste_wrap_bare_urls| to opt out.
 
                 If the visual selection is a URL (e.g. `https: //wikipedia.org`)
                 and the clipboard is also a URL (e.g. `https://example.com`),
@@ -69,6 +86,9 @@ magic-link-paste#markdown#paste()               *magic-link-paste#markdown#paste
                 syntax suppresses escape sequences, and is also valid in a
                 link like `[Example](<https://example.com>)`.
 
+                Also called by |vim.paste()| by default, see
+                |g:magic_link_paste_intercept_bracketed_paste| for details and
+                instructions for disabling.
 ABOUT                                           *magic-link-paste-about*
 
 Grab the latest version or report a bug on GitHub:

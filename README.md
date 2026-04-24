@@ -23,4 +23,8 @@ Then press `p` to paste, resulting in the following buffer:
 - [vim-magic-link-paste](https://github.com/lehmacdj/vim-magic-link-paste): easily create links when pasting URLs
 ```
 
+The plugin will also do the inverse. Selecting `https://unformeddelta.wiki` and pasting `Unformed Delta Wiki` results in `[Unformed Delta Wiki](https://unformeddelta.wiki)`. You can disable this behavior by setting `let g:magic_link_paste_wrap_bare_urls = 0`.
+
+In Neovim, bracketed paste allows supporting Cmd-V as well. This requires overriding `vim.paste()`. You can opt out by setting `let g:magic_link_paste_intercept_bracketed_paste = 0`.
+
 See `:h magic-link-paste` for more details.
