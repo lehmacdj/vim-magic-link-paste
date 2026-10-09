@@ -56,6 +56,28 @@ unlet g:magic_link_paste_wrap_bare_urls
 call s:check('paste-plain',
       \ s:run_paste('one two three', 'XYZ', 5, 2) ==# 'one XYZ three', '')
 
+" Goes through the buffer-local mapping so that v:register is set the way it
+" is for a real `"ap`.
+function! s:run_mapped_paste(buf, regname, reg, start, right) abort
+  enew!
+  set filetype=markdown
+  call setline(1, a:buf)
+  call setreg(a:regname, a:reg)
+  call setreg('"', 'UNNAMED')
+  call cursor(1, a:start)
+  execute 'normal v' . a:right . 'l"' . a:regname . 'p'
+  call feedkeys('', 'x')
+  return getline(1)
+endfunction
+
+call s:check('paste-plain-named-register',
+      \ s:run_mapped_paste('one two three', 'a', 'XYZ', 5, 2)
+      \   ==# 'one XYZ three', '')
+call s:check('paste-forward-named-register',
+      \ s:run_mapped_paste('Here is Example text', 'a',
+      \                    'https://example.com', 9, 6)
+      \   ==# 'Here is [Example](https://example.com) text', '')
+
 " --- vim.paste override (Neovim only) ---
 function! s:run_vim_paste(buf, paste, start, right, ft) abort
   enew!

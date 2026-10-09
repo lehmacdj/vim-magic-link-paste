@@ -71,7 +71,7 @@ function! magic_link_paste#markdown#paste() abort
     call setline(l:lnum, l:new_line)
     call cursor(l:lnum, l:scol + strlen(l:replacement))
   else
-    execute "normal! p"
+    execute 'normal! "' . l:reg . 'p'
   endif
 
   " Setup repeat for repeat.vim
